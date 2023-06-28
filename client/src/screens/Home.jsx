@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext, fetchlink } from '../App';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/home.css';
 
 export default function Home() {
@@ -42,25 +42,17 @@ export default function Home() {
                                     {wishlistItems.map((item, index) => {
                                         console.log("item", item)
                                         return (
-                                            <a className="grid-item"
-                                                onClick={() => {
-                                                    navigate(`/details/${item.slug}`, 
-                                                        { state: { 
-                                                            item: {...item, 
-                                                                seller: item.seller.username
-                                                            }
-                                                        } }
-                                                    )
-                                                }}
-                                                key={index}>
+                                            <Link state={{ item: {...item, seller: item.seller.username } }} to={`/details/${item.slug}`} className="grid-item"
+                                                key={index}
+                                            >
                                                 <div className="grid-image">
                                                     <div className="grid-image-inner-wrapper">
-                                                        <img src={item.images[0]} alt='itemimg'
+                                                        <img src={item.images ? item.images[0] : 'https://i.ytimg.com/vi/vHF9tM2Xots/maxresdefault.jpg'} alt='itemimg'
                                                             style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}
                                                         />
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         )
                                     })}
                                 </div>
@@ -73,21 +65,15 @@ export default function Home() {
                             data-controllers-bound="GridImages"
                         >
                             {items.map((item, index) => {
-                                console.log("item", item)
+                                // console.log("item", item)
                                 return (
-                                    <a className="grid-item"
-                                        onClick={() => {
-                                            navigate(`/details/${item.slug}`, 
-                                                { state: { 
-                                                    item: {...item, seller: item.seller.username
-                                                    }
-                                                } }
-                                            )
-                                        }}
-                                        key={index}>
+                                    <Link state={{ item: {...item, seller: item.seller.username } }} to={`/details/${item.slug}`} className="grid-item"
+                                        key={index}
+                                    >
                                         <div className="grid-image">
                                             <div className="grid-image-inner-wrapper">
-                                                <img src={item.images[0]} alt='itemimg'
+                                                <img src={item.images ? item.images[0] : 'https://i.ytimg.com/vi/vHF9tM2Xots/maxresdefault.jpg'}
+                                                    alt='itemimg'
                                                     style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}
                                                 />
                                             </div>
@@ -98,7 +84,7 @@ export default function Home() {
                                             <br />
                                             <h3 className="portfolio-price">${item.price}</h3>
                                         </div>
-                                    </a>
+                                    </Link>
                                 )
                             })}
                         </div>
