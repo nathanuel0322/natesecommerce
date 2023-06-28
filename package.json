@@ -1,0 +1,16 @@
+{
+  "name": "natescommerce",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && nodemon index.mjs"
+  },
+  "author": "",
+  "license": "ISC"
+}

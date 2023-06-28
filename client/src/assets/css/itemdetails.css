@@ -1,0 +1,8 @@
+#itembuttondiv {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50vh;
+    right: 3vw;
+    row-gap: 2vh;
+}

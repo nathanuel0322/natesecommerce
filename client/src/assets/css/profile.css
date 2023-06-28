@@ -1,0 +1,57 @@
+.globaldiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 1rem;
+}
+.globaldiv input{
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding-inline: 0.25rem
+}
+.labeldiv {
+    display: inline-block;
+}
+.labeldiv label {
+    margin-right: 0.5rem;
+}
+#profileparentdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5vw;
+    margin-top: 10vh;
+}
+.h1s {
+    text-align: center;
+    font-size: 8.5rem;
+    margin-block: 1rem;
+    font-style: oblique;
+    font-family: 'gothicFont';
+    color: rgb(163, 125, 29);
+    padding-inline: 3vw
+}
+@font-face {
+    font-family: 'gothicFont';
+    src: url(../font/Angel\ wish.ttf) format('truetype');
+    
+}
+@font-face {
+    font-family: 'text_1';
+    src: url(../font/text_1.ttf);
+}
+.text1{
+    font-family: 'text_1';
+}
+@media (max-width: 776px) {
+    #profilepic {
+        display: none;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    #profileparentdiv {
+        padding-inline: 3vw;
+    }
+}

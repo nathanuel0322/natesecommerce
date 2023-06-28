@@ -1,0 +1,89 @@
+#gridthumbs-signup {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 5vw;
+    column-gap: 10vw;
+    margin-top: 15vh;
+}
+.carddiv-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.carddiv {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    
+}
+
+.carddiv img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.carddiv .roles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: rgb(105, 82, 23);
+    font-weight: 600;
+    font-size: 1000%;
+    transition: all 0.3s ease;
+    opacity: 0;
+    font-family:'gothicFont'
+}
+.carddiv::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(60,7.462686567164193%,86.86274509803921%, 0.75);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+  
+.carddiv:hover::before, .carddiv:hover .roles {
+    opacity: 1;
+}
+#signuph1 {
+    text-align: center;
+    font-size: 1200%;
+    margin-block: 1.5rem;
+    font-weight: 400;
+    font-style:oblique;
+    font-family: 'gothicFont';
+    color: rgb(163, 125, 29);
+}
+@media (max-width: 477px) {
+    #signuph1 {
+        font-size: 700%;
+    }
+}
+@media (max-width: 889px) {
+    #signuppic {
+        display: none;
+    }
+}
+#signuph2 {
+    transition: all .3s;
+}
+@media (max-width: 507px) {
+    #signuph2 {
+        font-size: 500%;
+    }
+}
+@font-face {
+    font-family: 'gothicFont';
+    src: url(../font/Angel\ wish.ttf) format('truetype');
+}

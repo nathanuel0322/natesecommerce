@@ -1,0 +1,62 @@
+.MuiDrawer-paperAnchorRight {
+    background-color: #8965 !important;
+    width: 42% !important;
+    padding: 1rem 2rem;
+}
+@media (max-width: 650px) {
+    .MuiDrawer-paperAnchorRight {
+        width: 100% !important;
+    }
+    .cartimg {
+        width: 25vw !important;
+    }
+    .cartitem > div {
+        padding: 5%;
+        font-size: 115%;
+    }
+}
+#sidedrawerdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Play", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+#sidedrawerdiv > * {
+    text-decoration: none;
+    color: white;
+    font-family: "Teko", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0.667rem 1rem;
+}
+#linka {
+    letter-spacing: 0.05rem;
+}
+#booknowli {
+    color: white;
+    padding: 0.625rem 2rem;
+    width: 100%;
+    border: 2px solid #141229;
+    border-radius: 40px;
+    text-align: center;
+    background-color: rgb(27, 194, 202);
+}
+#galleryli, #booknowli {
+    list-style-type: none;   
+}
+.css-1bntgh8-MuiSvgIcon-root{
+    width: 75px !important;
+    height: 75px !important;
+}
+.cartitem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cartitem * {
+    color: white !important;
+}

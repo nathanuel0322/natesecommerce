@@ -1,0 +1,62 @@
+
+.globaldiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 1rem;
+}
+.globaldiv * {
+    font-size: 1.25rem;
+}
+.labeldiv {
+    display: inline-block;
+}
+#profileparentdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5vw;
+    margin-top: 10vh;
+}
+@font-face {
+    font-family: 'gothicFont';
+    src: url(../font/Angel\ wish.ttf) format('truetype');
+    
+}
+@font-face {
+    font-family: 'text_1';
+    src: url(../font/text_1.ttf);
+}
+.text1{
+    font-family: 'text_1';
+}
+.h2s {
+    text-align: center;
+    font-size: 3rem;
+    margin-block: 1rem;
+    font-style: oblique;
+    font-family: 'text_1';
+    color: rgb(55, 65, 10);
+
+}
+#loginform {
+    align-items: flex-start;
+}
+#loginform .labeldiv {
+    padding-left: 4vw;
+}
+#logindiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    margin-top: 10vh;
+}
+@media (max-width: 600px) {
+    #loginpic {
+        display: none;
+    }
+}

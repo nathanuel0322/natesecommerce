@@ -1,0 +1,22 @@
+#createitemdiv {
+    align-items: center;
+}
+#newuseddiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1vw;
+}
+#newuseddiv > label {
+    margin: 0;
+}
+#descriptiondiv, #createimagediv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1vh;
+}
+#descriptiondiv > textarea {
+    padding: 1rem;
+    min-width: 29vw;
+}
