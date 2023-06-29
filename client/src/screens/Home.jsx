@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext, fetchlink } from '../App';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../assets/css/home.css';
 
 export default function Home() {
     const { user } = useContext(AuthContext)
     const [items, setItems] = useState([]);
     const [wishlistItems, setWishlistItems] = useState([]);
-    const navigate = useNavigate();
     useEffect(() => {
         fetch(`${fetchlink}/getallitems`)
             .then(res => res.json())
@@ -18,7 +17,6 @@ export default function Home() {
                     fetch(`${fetchlink}/wishlist?username=${user.username}`)
                         .then(res2 => res2.json())
                         .then(data2 => {
-                            console.log("returned wishlist items", data2)
                             if (data2.wishlist) {
                                 setWishlistItems(data2.wishlist.items.reverse())
                             }
@@ -40,7 +38,6 @@ export default function Home() {
                             :
                                 <div id="wishlistdiv" className="portfolio-grid-overlay grid-wrapper collection-content-wrapper" data-controller="GridImages" data-animation-role="section" data-controllers-bound="GridImages">
                                     {wishlistItems.map((item, index) => {
-                                        console.log("item", item)
                                         return (
                                             <Link state={{ item: {...item, seller: item.seller.username } }} to={`/details/${item.slug}`} className="grid-item"
                                                 key={index}
@@ -60,34 +57,39 @@ export default function Home() {
                         </div>
                     )}
                     <div id='righthome'>
-                        <p style={{textAlign: 'center', textDecoration: 'underline', fontSize: '150%'}}>For Sale</p>
-                        <div id="gridThumbs" className="portfolio-grid-overlay grid-wrapper collection-content-wrapper" data-controller="GridImages" data-animation-role="section"
-                            data-controllers-bound="GridImages"
-                        >
-                            {items.map((item, index) => {
-                                // console.log("item", item)
-                                return (
-                                    <Link state={{ item: {...item, seller: item.seller.username } }} to={`/details/${item.slug}`} className="grid-item"
-                                        key={index}
-                                    >
-                                        <div className="grid-image">
-                                            <div className="grid-image-inner-wrapper">
-                                                <img src={item.images ? item.images[0] : 'https://i.ytimg.com/vi/vHF9tM2Xots/maxresdefault.jpg'}
-                                                    alt='itemimg'
-                                                    style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}
-                                                />
+                        <p style={{textAlign: 'center', textDecoration: 'underline', fontSize: '150%', marginTop: '5vh'}}>For Sale</p>
+                        {items.length > 0 ? (
+                            <div id="gridThumbs" className="portfolio-grid-overlay grid-wrapper collection-content-wrapper" data-controller="GridImages" data-animation-role="section"
+                                data-controllers-bound="GridImages"
+                            >
+                                {items.map((item, index) => {
+                                    return (
+                                        <Link state={{ item: {...item, seller: item.seller.username } }} to={`/details/${item.slug}`} className="grid-item"
+                                            key={index}
+                                        >
+                                            <div className="grid-image">
+                                                <div className="grid-image-inner-wrapper">
+                                                    <img src={item.images[0]}
+                                                        alt='itemimg'
+                                                        style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="portfolio-overlay"></div>
-                                        <div className="portfolio-text">
-                                            <h3 className="portfolio-name">{item.name}</h3>
-                                            <br />
-                                            <h3 className="portfolio-price">${item.price}</h3>
-                                        </div>
-                                    </Link>
-                                )
-                            })}
-                        </div>
+                                            <div className="portfolio-overlay"></div>
+                                            <div className="portfolio-text">
+                                                <h3 className="portfolio-name">{item.name}</h3>
+                                                <br />
+                                                <h3 className="portfolio-price">${item.price}</h3>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
+                            </div>
+                        ) : (
+                            <p id='noitems'>
+                                There aren't any items that are currently on sale 😢
+                            </p>
+                        )} 
                     </div>
                 </div>
             </div>

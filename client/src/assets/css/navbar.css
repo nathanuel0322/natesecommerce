@@ -1,0 +1,16 @@
+.navbar-brand {
+    font-family: gothicFont;
+    font-size: 2.5rem;
+}
+#navbarid {
+    flex-direction: column;
+}
+@media (min-width: 992px) {
+    #navbarid {
+        flex-direction: row;
+    }
+}
+#searchbox {
+    border-radius: 17px;
+    /* max-width: 67%; */
+}

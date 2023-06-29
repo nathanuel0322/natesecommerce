@@ -151,4 +151,11 @@ h1, h2, h3, h4 {
 .portfolio-text > * {
     font-weight: 700;
     font-size: 1.5rem;
+    margin-block: 1vh;
+}
+#noitems {
+    font-size: 175%;
+    margin-top: 20vh;
+    text-align: center;
+    margin-inline: 5vw;
 }

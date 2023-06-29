@@ -1,13 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { AuthContext, fetchlink } from '../../App';
 import { toast } from 'react-toastify';
 import '../../assets/css/sidedrawer.css'
 
-export default function Cart({drawerstate, drawerfunc}) {
+export default function Cart({ drawerstate, drawerfunc }) {
     const { user } = useContext(AuthContext);
     const [currentCart, setCurrentCart] = useState([]);
 
@@ -21,7 +20,6 @@ export default function Cart({drawerstate, drawerfunc}) {
                         if (data.error) {
                             toast.error(data.error);
                         } else {
-                            console.log("cart: ", data);
                             setCurrentCart(data.shopping_cart);
                         }
                     })

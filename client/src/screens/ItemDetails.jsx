@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
-import Select from 'react-select'
+import { useContext } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AuthContext, fetchlink } from '../App'
@@ -13,7 +12,6 @@ export default function ItemDetails() {
 
     const { user } = useContext(AuthContext)
 
-    console.log(item)
     return (
         <div>
             <h1 className='h1s'>Item Details</h1>
@@ -60,8 +58,7 @@ export default function ItemDetails() {
                                         body: JSON.stringify({
                                             username: user.username,
                                             name: item.name,
-                                            // cut off the $ sign
-                                            price: item.price.substring(1),
+                                            price: item.price,
                                             newused: item.newused,
                                             description: item.description,
                                             images: [`https://${item.imageUrl}`],

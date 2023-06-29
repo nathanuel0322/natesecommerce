@@ -30,10 +30,7 @@ export default function Login() {
                         {/* make call to index.mjs and get user with matching details using "?" query */}
                         <button className="btn btn-outline-success my-2 my-sm-0 ml-xl-5" onClick={() => {
                             // pass {email, password} to index.mjs on local
-                            fetch(`${fetchlink}/user?email=` + email + "&password=" + password, {
-                                method: "GET",
-                                headers: {"Content-Type": "application/json"}
-                            })
+                            fetch(`${fetchlink}/user?email=` + encodeURIComponent(email) + "&password=" + encodeURIComponent(password))
                                 .then(res => res.json())
                                 .then(data => {
                                     if (data) {

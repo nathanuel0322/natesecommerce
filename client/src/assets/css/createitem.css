@@ -1,5 +1,6 @@
 #createitemdiv {
     align-items: center;
+    margin-bottom: 5vh;
 }
 #newuseddiv {
     display: flex;

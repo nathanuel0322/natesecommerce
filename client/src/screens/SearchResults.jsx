@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../App';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 export default function SearchResults() {
-    const { user } = useContext(AuthContext);
     const location = useLocation();
     const { items } = location.state;
     console.log("items: ", items);
-    const navigate = useNavigate();
 
     return (
         <div className="content-wrapper">
@@ -16,21 +12,19 @@ export default function SearchResults() {
                     data-controllers-bound="GridImages"
                 >
                     {items.map((item, index) => {
-                        console.log("item is: ", item)
                         return (
                             // we need to navigate to details and pass in the entire item object
-                            <a className="grid-item" key={index} onClick={() => {
-                                navigate(`/details/${item.productCode}`, { state: 
-                                    { item: {...item, images: [item.imageUrl], 
-                                        description: item.brandName, price: item.price.current.text.substring(1), newused: false,
-                                        seller: "MainSeller"
-                                    }}
-                                });
-                            }}>
+                            <Link className="grid-item" key={index} to={`/details/${item.productCode}`} 
+                                state={{ item: {...item, images: [item.imageUrl], description: item.brandName, newused: false, seller: "MainSeller",
+                                    price: item.price.current.text.substring(1),
+                                }}}
+                            >
                                 <div className="grid-image">
                                     <div className="grid-image-inner-wrapper">
                                         {/* change this later */}
-                                        <img src={`https://${item.imageUrl}`} style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}/>
+                                        <img src={`https://${item.imageUrl}`} alt='itempic' 
+                                            style={{width: "100%", height: "100%", objectPosition: "50% 50%", objectFit: "cover"}}
+                                        />
                                     </div>
                                 </div>
                                 <div className="portfolio-overlay"></div>
@@ -39,7 +33,7 @@ export default function SearchResults() {
                                     <br />
                                     <h3 className="portfolio-price">{item.price.current.text}</h3>
                                 </div>
-                            </a>
+                            </Link>
                         )
                     })}
                 </div>
