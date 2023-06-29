@@ -1,4 +1,4 @@
-# Nate's Commerce
+# Nate's E-Commerce
 
 ## UML Structure
 ![UML](screenshots/UML.png)
