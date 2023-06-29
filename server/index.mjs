@@ -26,15 +26,10 @@ const Wishlist = mongoose.model('Wishlist');
 
 app.get('/user', (req, res) => {
     const { email, password } = req.query;
-    // get user with req.body
-    // const { email, password } = req.body;
-    console.log("email is: ", email)
-    console.log("password is: ", password)
     // find user with email and password
     User.findOne({ email_address: email, password: password }).then((user) => {
         // if user is found, return user
         if (user) {
-            console.log("found user is: ", user)
             res.json(user)
         } else {
             // if user is not found, return null
@@ -44,13 +39,10 @@ app.get('/user', (req, res) => {
 });
 
 app.post('/user', async (req, res) => {
-    console.log("user is: ", req.body)
     // create a new user with a wishlistschema linked to user.wisjlist
     const user = new User({...req.body, email_address: req.body.email});
-    console.log("mongoose user is: ", user)
     await user.save()
         .then(async (savedUser) => {
-            console.log("user is: ", savedUser);
             res.json(savedUser);
         })
         .catch((err) => {
@@ -63,8 +55,6 @@ app.post('/updateprofile', async (req, res) => {
     // this holds an array where the first element is the object of the initial user
     // and the second element is the object of the updated user
     const { initialUser, updatedUser } = req.body;
-    console.log("initial user is: ", initialUser)
-    console.log("updated user is: ", updatedUser)
     // find user with email and password
     User.findOneAndUpdate(
         { email_address: initialUser.email_address, password: initialUser.password }, 
@@ -76,7 +66,6 @@ app.post('/updateprofile', async (req, res) => {
             if (user) {
                 await user.save()
                     .then((savedUser) => {
-                        console.log("updated user is: ", savedUser)
                         res.json(savedUser);
                     })
             } else {
@@ -95,7 +84,6 @@ app.post("/createitem", async (req, res) => {
         await User.findOne({ username: req.body.userName }).then(async (user) => {
             if (user) {
                 // save item here
-                console.log("user is: ", user)
                 const item = new Item({
                     name: req.body.name,
                     price: Number(req.body.price),
@@ -145,7 +133,6 @@ app.post("/addtoseller", async (req, res) => {
         await User.findOne({ username: "MainSeller" }).then(async (user) => {
             if (user) {
                 // save item here
-                console.log("user is: ", user)
                 const item = new Item({
                     name, price, description, newused, images,
                     // seller is a reference to the seller, so link to matching username
@@ -281,16 +268,13 @@ app.post('/addtowishlist', async (req, res) => {
     try {
         await Item.findOne({ name: item.name }).then(async (item) => {
             if (item) {
-                console.log("item found in addtowishlist: ", item)
                 // now add item to user's shopping cart
                 await User.findOne({ username: username }).populate('wishlist').then(async (user) => {
                     if (user) {
-                        console.log("user found in addtowishlist: ", user)
                         // user.wishlist references wishlistSchema
                         // user.wishlist.items references itemSchema
                         await Wishlist.findOne({ user }).populate('items').then(async (wishlist) => {
                             if (wishlist) {
-                                console.log("wishlist found in addtowishlist: ", wishlist)
                                 wishlist.items.push(item);
                                 await wishlist.save();
                             } else {
@@ -298,10 +282,8 @@ app.post('/addtowishlist', async (req, res) => {
                                     user, items: [item]
                                 })
                                 await newwishlist.save();
-                                console.log("newwishlist created in addtowishlist: ", newwishlist)
                                 user.wishlist = newwishlist;
                                 await user.save();
-                                console.log("user updated in addtowishlist: ", user)
                             }
                         })
                     }
